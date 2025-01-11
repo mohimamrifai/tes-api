@@ -24,3 +24,5 @@ mongoose.connect(MONGO_URI,).then(() => {
 }).catch((err) => {
     console.log("Error connecting to MongoDB", err);
 });
+
+export default app;
