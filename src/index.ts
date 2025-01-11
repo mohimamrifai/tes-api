@@ -11,6 +11,9 @@ const API_PREFIX = "/api/v1";
 const MONGO_URI = process.env.MONGO_URI || "";
 const PORT = process.env.PORT || 3000;
 
+// middleware
+app.use(express.json());
+
 app.use(`${API_PREFIX}/users`, userRoutes);
 
 mongoose.connect(MONGO_URI,).then(() => {
