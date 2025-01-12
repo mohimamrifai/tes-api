@@ -27,7 +27,7 @@ const swaggerFile = path.resolve(__dirname, "../docs/version.1.0.0.json");
 const swaggerData = JSON.parse(fs.readFileSync(swaggerFile, "utf-8"));
 
 // serve docs/version.1.0.0.json
-app.use(`${API_PREFIX}/docs`, express.static(path.join(__dirname, "../docs")));
+app.use(`/docs`, express.static(path.join(__dirname, "../docs")));
 
 // middleware
 app.use(express.json());
