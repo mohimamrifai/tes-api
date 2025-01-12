@@ -23,9 +23,11 @@
   },
   "dependencies": {
     "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.9.4",
+    "morgan": "^1.10.0",
     "uuid": "^11.0.5"
   }
 }
