@@ -26,14 +26,15 @@ const logStream = fs.createWriteStream(path.join("/tmp", "requests.log"), { flag
 const swaggerFile = path.resolve(__dirname, "../docs/version.1.0.0.json");
 const swaggerData = JSON.parse(fs.readFileSync(swaggerFile, "utf-8"));
 
-// serve swagger files statically
-app.use(express.static(path.join(__dirname, "../docs")));
-app.use(express.static(path.join(__dirname, "../node_modules/swagger-ui-dist")));
-
 // middleware
 app.use(express.json());
 app.use(morgan("combined", { stream: logStream }));
 app.use(cors());
+
+// redirect root to docs
+app.get("/", (req, res) => {
+    res.redirect(`${API_PREFIX}/docs`);
+});
 
 // swagger docs endpoint
 app.use(`${API_PREFIX}/docs`, swaggerUi.serve);
