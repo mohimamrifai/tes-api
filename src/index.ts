@@ -6,6 +6,7 @@ import morgan from "morgan";
 import fs from "fs";
 import path from "path";
 import swaggerUi from "swagger-ui-express";
+import cors from "cors";
 
 dotenv.config();
 
@@ -25,11 +26,14 @@ const logStream = fs.createWriteStream(path.join("/tmp", "requests.log"), { flag
 const swaggerFile = path.resolve(__dirname, "../docs/version.1.0.0.json");
 const swaggerData = JSON.parse(fs.readFileSync(swaggerFile, "utf-8"));
 
+// serve docs/version.1.0.0.json
+app.use(`${API_PREFIX}/docs`, express.static(path.join(__dirname, "../docs")));
+
 // middleware
 app.use(express.json());
-app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerData));
+app.use(`${API_PREFIX}/docs`, swaggerUi.serve, swaggerUi.setup(swaggerData));
 app.use(morgan("combined", { stream: logStream }));
-
+app.use(cors());
 // routes
 app.use(`${API_PREFIX}/users`, userRoutes);
 
