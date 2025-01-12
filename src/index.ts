@@ -14,7 +14,12 @@ const API_PREFIX = "/api/v1";
 
 const MONGO_URI = process.env.MONGO_URI || "";
 const PORT = process.env.PORT || 3000;
-const logStream = fs.createWriteStream(path.join(__dirname, "..", "requests.log"), { flags: "a" });
+
+// not working in vercel
+// const logStream = fs.createWriteStream(path.join(__dirname, "..", "requests.log"), { flags: "a" });
+
+// working in vercel
+const logStream = fs.createWriteStream(path.join("/tmp", "requests.log"), { flags: "a" });
 
 // read docs/version.1.0.0.json
 const swaggerFile = path.resolve(__dirname, "../docs/version.1.0.0.json");
