@@ -9,6 +9,10 @@
         {
             "url": "http://localhost:3000/api/v1",
             "description": "Development Server"
+        },
+        {
+            "url": "https://tes-api-three.vercel.app/api/v1",
+            "description": "Production Server"
         }
     ],
     "tags": [
